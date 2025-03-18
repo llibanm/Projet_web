@@ -8,5 +8,4 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-# exclusion du répertoire des bases de données SQLite
-/database
+
