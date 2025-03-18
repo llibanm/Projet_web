@@ -22,6 +22,13 @@ class Produit
     #[ORM\Column(nullable: true)]
     private ?int $quantite = null;
 
+
+    public function __construct(string $libelle, int $prix){
+        $this->libelle = $libelle;
+        $this->prix = $prix;
+        $this->quantite = 0;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
