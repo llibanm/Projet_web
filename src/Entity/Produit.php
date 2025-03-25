@@ -17,7 +17,7 @@ class Produit
     private ?string $libelle = null;
 
     #[ORM\Column]
-    private ?int $prix = null;
+    private ?float $prix = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $quantite = null;
@@ -46,12 +46,12 @@ class Produit
         return $this;
     }
 
-    public function getPrix(): ?int
+    public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix(int $prix): static
+    public function setPrix(float $prix): static
     {
         $this->prix = $prix;
 
