@@ -20,13 +20,16 @@ class Produit
     private ?float $prix = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $quantite = null;
+    private ?int $quantiteEnStock = null;
+
+    #[ORM\Column]
+    private ?bool $enstock = null;
 
 
     public function __construct(string $libelle, int $prix){
         $this->libelle = $libelle;
         $this->prix = $prix;
-        $this->quantite = 0;
+        $this->quantiteEnStock = 0;
     }
 
     public function getId(): ?int
@@ -58,14 +61,26 @@ class Produit
         return $this;
     }
 
-    public function getQuantite(): ?int
+    public function getQuantiteEnStock(): ?int
     {
-        return $this->quantite;
+        return $this->quantiteEnStock;
     }
 
-    public function setQuantite(?int $quantite): static
+    public function setQuantiteEnStock(?int $quantiteEnStock): static
     {
-        $this->quantite = $quantite;
+        $this->quantiteEnStock = $quantiteEnStock;
+
+        return $this;
+    }
+
+    public function isEnstock(): ?bool
+    {
+        return $this->enstock;
+    }
+
+    public function setEnstock(bool $enstock): static
+    {
+        $this->enstock = $enstock;
 
         return $this;
     }
