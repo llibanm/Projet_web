@@ -17,6 +17,9 @@ class Panier
     #[ORM\JoinColumn(nullable: true)]
     private Produit $produit;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $quantite = null;
+
 
     public function getUser(): User
     {
@@ -36,5 +39,17 @@ class Panier
     public function setProduit(Produit $produit): void
     {
         $this->produit = $produit;
+    }
+
+    public function getQuantite(): ?int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(?int $quantite): static
+    {
+        $this->quantite = $quantite;
+
+        return $this;
     }
 }
