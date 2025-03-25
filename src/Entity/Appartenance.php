@@ -9,11 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Appartenance
 {
     #[ORM\Id]
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\OneToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private User $user;
 
-    #[ORM\ManyToOne(targetEntity: Pays::class)]
+    #[ORM\OneToOne(targetEntity: Pays::class)]
     #[ORM\JoinColumn(nullable: false)]
     private Pays $pays;
 
