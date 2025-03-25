@@ -29,6 +29,7 @@ class Produit
     public function __construct(string $libelle, int $prix){
         $this->libelle = $libelle;
         $this->prix = $prix;
+        $this->enstock = false;
         $this->quantiteEnStock = 0;
     }
 
