@@ -8,6 +8,6 @@ note pédagogique :
  - on ne redéfinit que les blocs internes à "body"
 #}
 
-{% block titre_principal %}{{ parent() }} : bienvenue{% endblock %}
+{% block titre_principal %}{{ app.user.roles }} : bienvenue{% endblock %}
 
 {# on ne redéfinit pas le bloc "vue" car on n'y ajoute rien #}
