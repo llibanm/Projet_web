@@ -33,13 +33,13 @@ class   User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 30, nullable: true)]
+    #[ORM\Column(length: 30, nullable: true, options: ['default' => null])]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 30, nullable: true)]
+    #[ORM\Column(length: 30, nullable: true, options: ['default' => null])]
     private ?string $prenom = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true, options: ['default' => null])]
     private ?\DateTimeInterface $date_naissance = null;
 
     public function getId(): ?int
