@@ -1,6 +1,9 @@
 {% extends 'Layouts/layout_vente.html.twig' %}
 
-{% block title %}{{ parent() }} : bienvenue{% endblock %}
+
+
+{% block title %}{{ parent() }} : bienvenue {% endblock %}
+
 
 {#
 note pédagogique :
@@ -8,6 +11,6 @@ note pédagogique :
  - on ne redéfinit que les blocs internes à "body"
 #}
 
-{% block titre_principal %}{{ parent() }} : bienvenue{% endblock %}
+{% block titre_principal %}{{ parent() }} : bienvenue {% if app.user %} {{ app.user.userIdentifier }} {% else %} anonyme {% endif %} !{% endblock %}
 
 {# on ne redéfinit pas le bloc "vue" car on n'y ajoute rien #}
