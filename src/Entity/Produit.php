@@ -13,10 +13,10 @@ class Produit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $libelle = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $prix = null;
 
     #[ORM\Column(nullable: true)]
@@ -26,9 +26,9 @@ class Produit
     private ?bool $enstock = null;
 
 
-    public function __construct(string $libelle, int $prix){
-        $this->libelle = $libelle;
-        $this->prix = $prix;
+    public function __construct(){
+        $this->libelle = null;
+        $this->prix = null;
         $this->enstock = false;
         $this->quantiteEnStock = 0;
     }
