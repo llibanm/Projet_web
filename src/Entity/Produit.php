@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\Table(name: 'l3_produit')]
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
 {
@@ -13,16 +16,28 @@ class Produit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 100)]
     private ?string $libelle = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Range(
+        notInRangeMessage: 'le prix doit être compris entre {{ min }} et {{ max }}',
+        min: 1,
+        max: 999999.99,
+    )]
     private ?float $prix = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Range(min: 0, minMessage: 'pas de stock négatif')]
     private ?int $quantiteEnStock = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'enstock', type: Types::BOOLEAN, options: ['default' => true])]
+    // paramètre "name" inutile ici car c'est déjà la valeur par défaut (c'est pour l'exemple)
+        // idem pour le paramètre "type" (Types::BOOLEAN vaut 'boolean')
+    #[Assert\Type(
+        type: 'boolean',
+        message: '{{ value }} n\'est pas de type {{ type }}',
+    )]
     private ?bool $enstock = null;
 
 

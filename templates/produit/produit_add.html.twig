@@ -1,0 +1,21 @@
+{% extends 'Layouts/layout_vente.html.twig' %}
+
+{% block title %}{{ parent() }} : form{% endblock %}
+
+{% block titre_principal %}Vue "film_add" : exercices formulaires{% endblock %}
+
+{% block vue %}
+    <h2>Ajout d'un produit</h2>
+
+    {{ form_start(myform) }}
+
+    {{ form_errors(myform) }}
+
+    {{ form_row(myform.libelle) }}
+
+
+
+    {{ form_rest(myform) }}
+
+    {{ form_end(myform) }}
+{% endblock %}
