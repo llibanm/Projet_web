@@ -1,0 +1,16 @@
+{% block vue %}
+    {% if produits|length == 0 %}
+        <p>Aucun produit dans le panier</p>
+    {% else %}
+        <table>
+            <tr><th>dénomination</th><th></th></tr>
+            {% for produit in produits %}
+                <tr>
+                    a
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    {{ dump(produits) }}
+{% endblock %}

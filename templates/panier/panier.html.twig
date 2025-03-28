@@ -1,0 +1,10 @@
+{% extends 'layouts/layout_vente.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block body %}
+    <div><h1>Votre panier</h1></div>
+
+    <div>{{ render(controller('App\\Controller\\PanierController::viewAction')) }}</div>
+
+{% endblock %}

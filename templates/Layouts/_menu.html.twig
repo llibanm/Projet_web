@@ -4,6 +4,10 @@
 <ul>
     <li>liste des produits</li>
     <li>ajouter un produit</li>
-    <li>... to be completed</li>
-    <li><a href="/logout"> Déconnexion</a> </li>
+    {% if app.user %}
+        <li><a href="/logout">Déconnexion</a> </li>
+    {% else %}
+        <li><a href="/security/register">S'inscrire</a> </li>
+        <li><a href="/security/login">Se connecter</a> </li>
+    {% endif %}
 </ul>
