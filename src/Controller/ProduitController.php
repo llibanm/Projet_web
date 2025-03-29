@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/produit', name: 'produit')]
 class ProduitController extends AbstractController
@@ -21,6 +22,7 @@ class ProduitController extends AbstractController
     }
 
     #[Route('/add', name: '_film_add')]
+    #[IsGranted('ROLE_ADMIN')]
     public function filmAddAction(EntityManagerInterface $em, Request $request): Response
     {
         $produit = new Produit();
@@ -33,12 +35,12 @@ class ProduitController extends AbstractController
         {
             $em->persist($produit);
             $em->flush();
-            $this->addFlash('info', 'ajout film réussi');
+            $this->addFlash('info', 'ajout produit réussi');
             return $this->redirectToRoute('accueil_index');
         }
 
         if ($form->isSubmitted())
-            $this->addFlash('info', 'formulaire ajout film incorrect');
+            $this->addFlash('info', 'formulaire ajout produit incorrect');
 
         $args = array(
             'myform' => $form
