@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -33,6 +35,7 @@ class   User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\Length(min: 3, max: 30, minMessage: 'Le mot de passe est trop court', maxMessage: 'Le mot de passe est trop long')]
     private ?string $password = null;
 
     #[ORM\Column(length: 30, nullable: true, options: ['default' => null])]
@@ -153,5 +156,17 @@ class   User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->date_naissance = $date_naissance;
 
         return $this;
+    }
+
+    #[Assert\Callback]
+    public function verifpassword(ExecutionContextInterface $context): void
+    {
+        if($this->password == $this->username)
+        {
+            $context
+                ->buildViolation('le nom d\'utilisateur et le mot de passe sont identiques')
+                ->atPath('password')
+                ->addViolation();
+        }
     }
 }

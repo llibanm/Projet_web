@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,6 +29,15 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Please enter a password',
                     ]),
                 ],
+            ])
+            ->add('nom')
+            ->add('prenom')
+            ->add('dateNaissance', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'attr' => ['class' => 'js-datepicker'],
+                'constraints' => [],
+                'html5' => false,
             ])
         ;
     }

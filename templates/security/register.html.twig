@@ -14,10 +14,40 @@
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword, {
+
+<div>
+        {{ form_label(registrationForm.username) }}
+        {{ form_widget(registrationForm.username) }}
+</div>
+
+
+    <div>
+        {{ form_label(registrationForm.plainPassword, 'Password') }}
+        {{ form_widget(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+    </div>
+
+    <div>
+        {{ form_label(registrationForm.nom) }}
+        {{ form_widget(registrationForm.nom) }}
+    </div>
+    <div>
+        {{ form_label(registrationForm.prenom) }}
+        {{ form_widget(registrationForm.prenom) }}
+    </div>
+    <div>
+        {{ form_label(registrationForm.dateNaissance) }}
+        {{ form_widget(registrationForm.dateNaissance) }}
+    </div>
+
+    <div>
+        {{ form_errors(registrationForm.username) }}
+        {{ form_errors(registrationForm.plainPassword) }}
+        {{ form_errors(registrationForm.nom) }}
+        {{ form_errors(registrationForm.prenom) }}
+        {{ form_errors(registrationForm.dateNaissance) }}
+    </div>
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
