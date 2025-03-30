@@ -1,0 +1,40 @@
+{% extends 'Layouts/layout_vente.html.twig' %}
+
+{% block body %}
+    <h1>Liste des produits</h1>
+
+    <table>
+        <tr>
+            <th>Libellé</th>
+            <th>Prix</th>
+            <th>Stock</th>
+            <th>Choix</th>
+            <th>Action</th>
+        </tr>
+        {% for produit in produits %}
+            <tr {% if produit.quantiteEnStock == 0 %} style="color: gray;" {% endif %}>
+                <td>{{ produit.libelle }}</td>
+                <td>{{ produit.prix }}</td>
+                <td>
+                    {% if produit.quantiteEnStock > 0 %}
+                        {{ produit.quantiteEnStock }}
+                    {% else %}
+                        <strong>Rupture de stock</strong>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if produit.quantiteEnStock > 0 %}
+                        {{ form_start(forms[produit.id]) }}
+                        {{ form_widget(forms[produit.id].quantite) }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if produit.quantiteEnStock > 0 %}
+                        <button type="submit">Commander</button>
+                        {{ form_end(forms[produit.id]) }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

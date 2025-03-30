@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,11 +22,14 @@ final class PanierController extends AbstractController
 
     public function viewAction(EntityManagerInterface $em): Response
     {
-        $id = $this->getUser()->getUserIdentifier();
-        $produitRepository = $em->getRepository(Produit::class);
-        $produits = $produitRepository->find($id);
-        $args = array(
-            'produits' => $produits,
+        $panierItems = $em->getRepository(Panier::class)->findBy([
+            'user_id' => $this->getUser()->getId(),
+        ]);
+
+        $total = 0;
+        foreach ($panierItems as $item) {
+            $total += $item->getPrixUnitaire() * $item->getQuantite();
+        }
         );
         return $this->render('panier/list.html.twig', $args);
     }
