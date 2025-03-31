@@ -1,10 +1,44 @@
 {% extends 'layouts/layout_vente.html.twig' %}
 
-{% block title %}{{ parent() }}{% endblock %}
 
 {% block body %}
-    <div><h1>Votre panier</h1></div>
+<h1>Votre Panier</h1>
 
-    <div>{{ render(controller('App\\Controller\\PanierController::viewAction')) }}</div>
+{% if panierUser is empty %}
+    <p>Votre panier est vide.</p>
+{% else %}
+    <table>
+        <thead>
+        <tr>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Prix Unitaire</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for panieritem in panierUser %}
+            <tr>
+                <td>{{ panieritem.produit.libelle }}</td>
+                <td>{{ panieritem.quantite }}</td>
+                <td>{{ panieritem.produit.prix }} €</td>
+                <td>{{ panieritem.quantite * panieritem.produit.prix }} €</td>
+                <td>
+                    <a href="/panier/supprimer/{{ panieritem.produit.id }}">Supprimer</a>
+                      {#  <a href="{{ path('panier_supprimer', {'id': item.produit.id}) }}">Supprimer</a>#}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
+    <p><strong>Total : {{ total }} €</strong></p>
+
+    <a href="/panier/commander">Commander</a>
+    <a href="/panier/vider">Vider le panier</a>
+
+
+{% endif %}
 {% endblock %}
+
