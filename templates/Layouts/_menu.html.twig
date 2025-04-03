@@ -9,7 +9,7 @@
         <li><a href="/users/add_admin">ajouter des admin</a></li>
     {% elseif is_granted('ROLE_ADMIN') %}
         <li><a href="/produit/list">liste des produits</a></li>
-        <li>ajouter un produit</li>
+        <li><a href="/produit/add">ajouter un produit</a></li>
     {% elseif app.user %}
         <li><a href="/produit/list">liste des produits</a></li>
         <li>ajouter un produit dans son panier</li>
