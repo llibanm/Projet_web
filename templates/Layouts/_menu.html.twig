@@ -4,8 +4,9 @@
 <ul>
 
     {% if is_granted('ROLE_SUPER_ADMIN') %}
-        <li>affichez les admins</li>
-        <li>supprimez des admins</li>
+        <li><a>affichez les admins</a></li>
+        <li><a>supprimez des admins</a></li>
+        <li><a href="/users/add_admin">ajouter des admin</a></li>
     {% elseif is_granted('ROLE_ADMIN') %}
         <li>liste des produits</li>
         <li>ajouter un produit</li>
