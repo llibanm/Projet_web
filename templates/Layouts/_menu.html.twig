@@ -8,10 +8,10 @@
         <li><a>supprimez des admins</a></li>
         <li><a href="/users/add_admin">ajouter des admin</a></li>
     {% elseif is_granted('ROLE_ADMIN') %}
-        <li>liste des produits</li>
+        <li><a href="/produit/list">liste des produits</a></li>
         <li>ajouter un produit</li>
     {% elseif app.user %}
-        <li>liste des produits</li>
+        <li><a href="/produit/list">liste des produits</a></li>
         <li>ajouter un produit dans son panier</li>
     {% endif %}
 
