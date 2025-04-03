@@ -6,14 +6,10 @@
     {% if is_granted('ROLE_SUPER_ADMIN') %}
         <li>affichez les admins</li>
         <li>supprimez des admins</li>
-    {% endif %}
-
-    {% if is_granted('ROLE_ADMIN') %}
+    {% elseif is_granted('ROLE_ADMIN') %}
         <li>liste des produits</li>
         <li>ajouter un produit</li>
-    {% endif %}
-
-    {% if is_granted('ROLE_CLIENT') %}
+    {% elseif app.user %}
         <li>liste des produits</li>
         <li>ajouter un produit dans son panier</li>
     {% endif %}
