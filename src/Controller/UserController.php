@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\Role\Role;
+
 #[Route('/users', name: '_users')]
 final class UserController extends AbstractController
 {
@@ -39,5 +41,17 @@ final class UserController extends AbstractController
         return $this->render('users/add_admin.html.twig', [
             'registrationForm' => $form,
         ]);
+    }
+
+    #[Route('/showall', name: '_showall')]
+    public function userList(EntityManagerInterface $entityManager): Response
+    {
+        $users = $entityManager->getRepository(User::class)->findAll();
+
+        $args = array(
+            'users' => $users,
+        );
+        return $this->render('users/list.html.twig', $args);
+
     }
 }

@@ -4,7 +4,7 @@
 <ul>
 
     {% if is_granted('ROLE_SUPER_ADMIN') %}
-        <li><a>affichez les admins</a></li>
+        <li><a href="/users/showall">affichez les admins</a></li>
         <li><a>supprimez des admins</a></li>
         <li><a href="/users/add_admin">ajouter des admin</a></li>
     {% elseif is_granted('ROLE_ADMIN') %}
