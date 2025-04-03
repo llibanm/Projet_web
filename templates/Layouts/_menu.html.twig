@@ -2,8 +2,24 @@
 
 <strong>Menu</strong>
 <ul>
-    <li>liste des produits</li>
-    <li>ajouter un produit</li>
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <li>affichez les admins</li>
+        <li>supprimez des admins</li>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <li>liste des produits</li>
+        <li>ajouter un produit</li>
+    {% endif %}
+
+    {% if is_granted('ROLE_CLIENT') %}
+        <li>liste des produits</li>
+        <li>ajouter un produit dans son panier</li>
+    {% endif %}
+
+
+
     {% if app.user %}
         <li><a href="/logout">Déconnexion</a> </li>
     {% else %}
