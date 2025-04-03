@@ -96,4 +96,19 @@ final class PanierController extends AbstractController
         // Rediriger vers la page du panier (panier vide)
         return $this->redirectToRoute('panier');
     }
+
+    #[Route('/voirpanier', name: '_panier')]
+    public function voirPanier(EntityManagerInterface $em): Response
+    {
+        $panierItems = $em->getRepository(Panier::class)->findBy([
+            'user' => $this->getUser(),
+        ]);
+
+        $args = array(
+            'panierItems' => $panierItems,
+        );
+
+        return $this->render('panier/panier.html.twig', $args);
+    }
+
 }
